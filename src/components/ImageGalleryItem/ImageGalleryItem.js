@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export default function ImageGalleryItem({ item, onClick }) {
   return (
@@ -11,4 +12,9 @@ export default function ImageGalleryItem({ item, onClick }) {
     </li>
   );
 }
-/**/
+ImageGalleryItem.propTypes = {
+    item: PropTypes.object,
+    onClick: PropTypes.func,
+}
+
+

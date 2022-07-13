@@ -10,6 +10,8 @@ export default class ImageGallery extends Component {
     gallery: null,
     page: 1,
     isLoading: false,
+    totalHits: 0,
+    theRest: 0,
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.galleryImgName !== this.props.galleryImgName) {
@@ -24,6 +26,7 @@ export default class ImageGallery extends Component {
           }
           this.setState({ gallery: gallery.hits });
           this.setState({ isLoading: false });
+          this.setState({ totalHits: gallery.totalHits })
         })
         .catch(err => {
           toast.error('За такими даними картинок не знайденно!');
@@ -42,12 +45,17 @@ export default class ImageGallery extends Component {
       .then(gallery =>
         this.setState(
           prev => ({ gallery: [...prev.gallery, ...gallery.hits] }),
-          this.setState({ isLoading: false })
+          this.setState({ isLoading: false }),
+           this.setState({ theRest : (this.state.totalHits - this.state.page * 12)})
+          
+          
         )
       );
   };
 
   render() {
+   
+    console.log(this.state.theRest)
     return (
       <div>
         <ul className="ImageGallery">
@@ -68,8 +76,12 @@ export default class ImageGallery extends Component {
             (<Loader />)
           </div>
         )}
-        {this.state.gallery && <Button loadmore={this.onLoad} />}
+        {this.state.gallery && this.state.theRest >= 0 && <Button loadmore={this.onLoad} />}
+        
       </div>
     );
   }
 }
+
+
+  

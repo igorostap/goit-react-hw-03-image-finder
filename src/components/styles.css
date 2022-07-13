@@ -180,7 +180,14 @@ img {
 /*
 * Стили компонента Buton (Load more)
 */
+.ButtonCont{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
 .Button {
+  margin-left: auto;
+  margin-right: auto;
   padding: 8px 16px;
   border-radius: 2px;
   background-color: #3f51b5;
