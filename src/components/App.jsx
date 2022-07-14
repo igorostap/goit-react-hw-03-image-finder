@@ -10,6 +10,7 @@ export class App extends Component {
     galleryImgName: '',
     currentImg: [],
     showModal: false,
+    page: 1,
   };
   formSubmit = galleryImgName => {
     this.setState({ galleryImgName });
